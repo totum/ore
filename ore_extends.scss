@@ -1,0 +1,151 @@
+// *************************************
+//
+//      Ore Extends
+//      #Navigation patterns
+//          #Nav-toggle
+//      
+//      #Grids
+// 
+//      #Images
+//      #Margins and paddings
+//      #Misc utilities
+// 
+// *************************************
+
+
+// -------------------------------------
+//      #Navigation
+//      ore-n*
+// -------------------------------------
+
+
+// ----- #nav-toggle ----- //
+%ore-n--toggle__list {
+    max-height: 0;
+    opacity: 1;
+    clear: both;
+    overflow: hidden;
+    @include breakpoint($l-break-medium) {
+        clear: none;
+    }
+}
+
+%ore-n--toggle__item {}
+
+%ore-n--toggle__checked {
+    max-height: 30em;
+}
+
+
+
+
+// -------------------------------------
+//      #Grid blocks
+//      ore-b*
+// -------------------------------------
+
+%block-1234-allwidth {
+    margin-left: -$l-padding-small;
+    margin-right: -$l-padding-small;
+    @include breakpoint($l-break-small2) {
+        margin-left: -$l-padding-small2;
+        margin-right: -$l-padding-small2;
+    }
+    @include breakpoint($l-break-medium) {
+        margin-left: -$l-padding-medium;
+        margin-right: -$l-padding-medium;
+    } 
+    @include breakpoint($l-break-large) {
+        margin-left: -$l-padding-large;
+        margin-right: -$l-padding-large;
+    }
+    @include breakpoint($l-break-xlarge) {
+        margin-left: -$l-padding-xlarge;
+        margin-right: -$l-padding-xlarge;   
+    }
+}
+
+%block-1234-centered {
+    @include breakpoint($l-break-medium) {
+        @include squish(1 1 of $l-medium-columns);
+    } 
+    @include breakpoint($l-break-large) {
+        @include squish(2 2 of $l-large-columns);
+    }
+    @include breakpoint($l-break-xlarge) {
+        @include squish(3 3 of $l-xlarge-columns);
+    }
+}
+
+%block-1a-full {
+    // necessary? is default..
+}
+
+%block-1b-half {
+    
+}
+
+
+
+// -------------------------------------
+//      #Images
+//      ore-i*
+// -------------------------------------
+
+%img-centered {
+    position: relative;
+    top: -50%;
+    margin-top: -25%;
+}
+
+%img-bg-scrolling {
+    height: 100%;
+    background-attachment:fixed;
+}
+
+// -------------------------------------
+//      #Margins and paddings
+// -------------------------------------
+%ore-m--0 {
+    margin: 0;
+}
+
+%margin-side-zero {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+%margin-topbottom-base {
+    @include leader(1, $base-font-size);
+    @include trailer(1, $base-font-size);
+}
+
+
+
+// -------------------------------------
+//      #Misc utilities
+// -------------------------------------
+
+%clear {
+    clear: both;
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%display-block {
+	display: block;
+}
+
+.is-hidden {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
