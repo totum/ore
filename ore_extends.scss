@@ -30,6 +30,7 @@
     }
 }
 
+
 %ore-n--toggle__item {}
 
 %ore-n--toggle__checked {
@@ -43,7 +44,7 @@
 //      #Grid blocks
 //      ore-b*
 // -------------------------------------
-
+/*
 %block-1234-allwidth {
     margin-left: -$l-padding-small;
     margin-right: -$l-padding-small;
@@ -83,7 +84,7 @@
 
 %block-1b-half {
     
-}
+}*/
 
 
 
@@ -110,14 +111,66 @@
     margin: 0;
 }
 
-%margin-side-zero {
+%ore-m__side--0 {
     margin-left: 0;
     margin-right: 0;
 }
 
-%margin-topbottom-base {
+%ore-m__topbottom--base {
     @include leader(1, $base-font-size);
     @include trailer(1, $base-font-size);
+}
+
+
+// ----- Side paddings for layout ----- //
+
+%ore-p__sides--small {
+    padding-left: $l-padding-small;
+    padding-right: $l-padding-small;
+}
+@include breakpoint($l-break-small2) {
+    %ore-p__sides--small2 {
+        padding-left: $l-padding-small2;
+        padding-right: $l-padding-small2;
+    }
+}
+@include breakpoint($l-break-medium) {
+    %ore-p__sides--medium {
+        padding-left: $l-padding-medium;
+        padding-right: $l-padding-medium;
+    }
+    %ore-p__sides--medium--0 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+%ore-p__sides--large {
+    padding-left: $l-padding-large;
+    padding-right: $l-padding-large;
+}
+@include breakpoint($l-break-xlarge) {
+    %ore-p__sides--xlarge {
+        padding-left: $l-padding-xlarge;
+        padding-right: $l-padding-xlarge;
+    }
+    %ore-p__sides--xlarge--full {
+        margin-left: -$l-padding-xlarge;
+        margin-right: -$l-padding-xlarge;  
+    }
+}
+%ore-p__sides--0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+// -------------------------------------
+//      #Transitions
+//      ore-t-*
+// -------------------------------------
+%ore-t__all--050 {
+    @include single-transition(all, .50s);
 }
 
 
@@ -142,10 +195,15 @@
 	display: block;
 }
 
-.is-hidden {
+
+%is-hidden {
     position: absolute;
     height: 1px;
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
+}
+
+%ore-l-center {
+    text-align: center;
 }
