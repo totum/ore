@@ -112,46 +112,32 @@
 }
 
 
-// ----- Side paddings for layout ----- //
+/* Side paddings for layout
+---------------------------------------- */
 
-%ore-p__sides--small {
+%ore-p__small--sides {
     padding-left: $l-padding-small;
     padding-right: $l-padding-small;
 }
-@include breakpoint($l-break-small2) {
-    %ore-p__sides--small2 {
-        padding-left: $l-padding-small2;
-        padding-right: $l-padding-small2;
-    }
-}
-@include breakpoint($l-break-medium) {
-    %ore-p__sides--medium {
-        padding-left: $l-padding-medium;
-        padding-right: $l-padding-medium;
-    }
-    %ore-p__sides--medium--0 {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-%ore-p__sides--large {
-    padding-left: $l-padding-large;
-    padding-right: $l-padding-large;
-}
-@include breakpoint($l-break-xlarge) {
-    %ore-p__sides--xlarge {
-        padding-left: $l-padding-xlarge;
-        padding-right: $l-padding-xlarge;
-    }
-    %ore-p__sides--xlarge--full {
-        margin-left: -$l-padding-xlarge;
-        margin-right: -$l-padding-xlarge;  
-    }
-}
+
 %ore-p__sides--0 {
     padding-left: 0;
     padding-right: 0;
 }
+
+@each $name, $width in $breakpoints {
+    @include breakpoint( $width ) {
+        %ore-p__#{$name}--sides {
+            padding-left: $l-padding-#{$name};
+            padding-right: $l-padding-#{$name};
+        }
+        %ore-p__#($name)--sides--0 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
 
 
 // -------------------------------------
