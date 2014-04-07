@@ -23,13 +23,6 @@
 /* Generic 
 ---------------------------------------- */
 
-// Remove list-styling for navigation lists
-%ore-n__list {
-    list-style-type: none;
-    padding-left: 0;
-    line-height: 0;
-}
-
 /* -----
     #nav-toggle
     based on navigataur.css by 
@@ -188,8 +181,6 @@
 //      #Misc utilities
 // -------------------------------------
 
-
-
 %ore-clear {
     clear: both;
 }
@@ -264,4 +255,11 @@
 
 %ore-pos-abs {
     position: absolute;
+}
+
+// Remove list-styling for navigation lists
+%ore-list--0 {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 0;
 }
