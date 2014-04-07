@@ -1,0 +1,263 @@
+/***************************************
+//
+//      Ore Extends
+//      #Navigation patterns
+//          #Nav-toggle
+//      
+//      #Grids
+//
+//      #Margins and paddings
+//
+//      #Images
+//      #Misc utilities
+// 
+***************************************/
+
+
+// -------------------------------------
+//      #Navigation
+//      ore-n*
+// -------------------------------------
+
+
+/* Generic 
+---------------------------------------- */
+
+// Remove list-styling for navigation lists
+%ore-n__list {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 0;
+}
+
+/* -----
+    #nav-toggle
+    based on navigataur.css by 
+    REMEMBER! Copy following into base.scss
+        Tim Pietrusky advanced checkbox hack (Android <= 4.1.2)
+        body{ -webkit-animation: bugfix infinite 1s; }
+        @-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+----- */
+
+%ore-n--toggle__list {
+    max-height: 0;
+    opacity: 1;
+    clear: both;
+    overflow: hidden;
+    @include breakpoint($l-break-medium) {
+        clear: none;
+    }
+}
+
+%ore-n--toggle__item {}
+
+%ore-n--toggle__checked {
+    max-height: 30em;
+}
+
+
+
+// -------------------------------------
+//      #Grid
+//      ore-g*
+//      All var names come from _settings.scss
+// -------------------------------------
+
+// %Placeholders without breakpoint. Mobile first.
+@for $i from 1 through $s-columns {
+    %ore-g--#{$i} {
+        @include span($i of $s-columns);
+    }
+    %ore-g--#{$i}--last {
+        @include span($i of $s-columns)
+    }
+    %ore-g--#{$i}--nest {
+        @include span($i of $s-columns nest)
+    }
+}
+
+// RWD grid %placeholders for pecific breakpoints.
+@each $name, $width in $breakpoints {
+    @for $i from 1 through $s-columns {
+        @include breakpoint( $width ) {
+            %ore-g__#{$name}--#{$i} {
+                @include span($i of $s-columns);
+            }
+            %ore-g__#{$name}--#{$i}--last {
+                @include span($i of $s-columns)
+            }
+            %ore-g__#{$name}--#{$i}--nest {
+                @include span($i of $s-columns nest)
+            }
+        }
+    }
+}
+
+
+// -------------------------------------
+//      #Margins and paddings
+// -------------------------------------
+
+%ore-m--leader {
+    @include leader(1);
+} 
+%ore-m--trailer {
+    @include trailer(1);
+}
+
+%ore-m--0 {
+    margin: 0;
+}
+
+%ore-m__side--0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+// ----- Side paddings for layout ----- //
+
+%ore-p__sides--small {
+    padding-left: $l-padding-small;
+    padding-right: $l-padding-small;
+}
+@include breakpoint($l-break-small2) {
+    %ore-p__sides--small2 {
+        padding-left: $l-padding-small2;
+        padding-right: $l-padding-small2;
+    }
+}
+@include breakpoint($l-break-medium) {
+    %ore-p__sides--medium {
+        padding-left: $l-padding-medium;
+        padding-right: $l-padding-medium;
+    }
+    %ore-p__sides--medium--0 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+%ore-p__sides--large {
+    padding-left: $l-padding-large;
+    padding-right: $l-padding-large;
+}
+@include breakpoint($l-break-xlarge) {
+    %ore-p__sides--xlarge {
+        padding-left: $l-padding-xlarge;
+        padding-right: $l-padding-xlarge;
+    }
+    %ore-p__sides--xlarge--full {
+        margin-left: -$l-padding-xlarge;
+        margin-right: -$l-padding-xlarge;  
+    }
+}
+%ore-p__sides--0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+// -------------------------------------
+//      #Images
+//      ore-img*
+// -------------------------------------
+
+%ore-img-centered {
+    position: relative;
+    top: -50%;
+    margin-top: -25%;
+}
+
+
+
+// -------------------------------------
+//      #Transitions
+//      ore-trans-*
+// -------------------------------------
+%ore-trans__all--050 {
+    @include single-transition(all, .50s);
+}
+
+
+
+// -------------------------------------
+//      #Misc utilities
+// -------------------------------------
+
+
+
+%ore-clear {
+    clear: both;
+}
+
+%ore-clearfix {
+    &:before {
+        content: "";
+        display: table;
+    }
+    &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@include breakpoint(max-width ($l-break-medium - 1)) {
+    %ore-clearfix--small {
+        &:before {
+            content: "";
+            display: table;
+        }
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+}
+@include breakpoint(max-width ($l-break-large - 1)) {
+    %ore-clearfix--medium {
+        &:before {
+            content: "";
+            display: table;
+        }
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+}
+
+%ore-display-block {
+    display: block;
+}
+
+
+%ore-hide {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Misc positioning
+---------------------------------------- */
+
+%ore-center {
+    text-align: center;
+}
+%ore-left {
+    text-align: left;
+}
+%ore-right {
+    text-align: right;
+}
+
+%ore-pos-rel {
+    position: relative;
+}
+
+%ore-pos-abs {
+    position: absolute;
+}
