@@ -1,6 +1,14 @@
 /***************************************
 //
 //      Ore Extends
+//      
+//      Naming convention: BEM. Example: %ore-g__medium--4--last
+//          %ore is prefix for all
+//          g in this place, is the name of the component shorthand. g for grid, m for margin, etc.
+//          medium is the breakpoint name. pulled from _settings.scss in core
+//          4 is the name of columns. 4 out of 12 in this case.
+//          last is to let susy know that this is the last of columns in this row.
+//
 //      #Navigation patterns
 //          #Nav-toggle
 //      
@@ -58,6 +66,8 @@
 
 // %Placeholders without breakpoint. Mobile first.
 @for $i from 1 through $s-columns {
+
+    //  Grids
     %ore-g--#{$i} {
         @include span($i of $s-columns);
     }
@@ -70,13 +80,31 @@
     %ore-g--#{$i}--last--nest {
         @include span(last $i of $s-columns nest)
     }
+
+    // Margins and padding
+    %ore-m--pre--#{$i} {
+        @include pre($i of $s-columns);
+    }
+    %ore-m--post--#{$i} {
+        @include post($i of $s-columns)
+    }
+    %ore-p--pre--#{$i} {
+        @include prefix($i of $s-columns)
+    }
+    %ore-p--post--#{$i} {
+        @include suffix($i of $s-columns)
+    }
+
 }
 
 // RWD grid %placeholders for pecific breakpoints.
 // $value(1) is breakpoint value, #2 is correspondent padding
 @each $name, $value in $breakpoints {
-    @for $i from 1 through $s-columns {
-        @include breakpoint( nth($value, 1) ) {
+    @include breakpoint( nth($value, 1) ) {
+
+        @for $i from 1 through $s-columns {
+
+            //  Grids
             %ore-g__#{$name}--#{$i} {
                 @include span($i of $s-columns);
             }
@@ -89,6 +117,34 @@
             %ore-g__#{$name}--#{$i}--last--nest {
                 @include span(last $i of $s-columns nest)
             }
+
+            //  Margins and paddings
+            %ore-m__#{$name}--pre--#{$i} {
+                @include pre($i of $s-columns);
+            }
+            %ore-m__#{$name}--post--#{$i} {
+                @include post($i of $s-columns)
+            }
+            %ore-p__#{$name}--pre--#{$i} {
+                @include prefix($i of $s-columns)
+            }
+            %ore-p__#{$name}--post--#{$i} {
+                @include suffix($i of $s-columns)
+            }
+        }
+
+        // Margin and paddings resets
+        %ore-m__#{$name}--pre--0 {
+            margin-left: 0;
+        }
+        %ore-m__#{$name}--post--0 {
+            margin-right: 0;
+        }
+        %ore-p__#{$name}--pre--0 {
+            padding-left: 0;
+        }
+        %ore-p__#{$name}--post--0 {
+            padding-right: 0;
         }
     }
 }
@@ -133,53 +189,8 @@
 
 /* Susy column padding and margins
 ---------------------------------------- */
-@for $i from 1 through $s-columns {
-    %ore-m--pre--#{$i} {
-        @include pre($i of $s-columns);
-    }
-    %ore-m--post--#{$i} {
-        @include post($i of $s-columns)
-    }
-    %ore-p--pre--#{$i} {
-        @include prefix($i of $s-columns)
-    }
-    %ore-p--post--#{$i} {
-        @include suffix($i of $s-columns)
-    }
-}
 
 
-@each $name, $value in $breakpoints {
-    @include breakpoint( nth($value, 1) ) {
-        @for $i from 1 through $s-columns {
-            %ore-m--pre__#{$name}--#{$i} {
-                @include pre($i of $s-columns);
-            }
-            %ore-m--post__#{$name}--#{$i} {
-                @include post($i of $s-columns)
-            }
-            %ore-p--pre__#{$name}--#{$i} {
-                @include prefix($i of $s-columns)
-            }
-            %ore-p--post__#{$name}--#{$i} {
-                @include suffix($i of $s-columns)
-            }
-        }
-        // Reset %placeholders
-        %ore-m--pre__#{$name}--0 {
-            margin-left: 0;
-        }
-        %ore-m--post__#{$name}--0 {
-            margin-right: 0;
-        }
-        %ore-p--pre__#{$name}--0 {
-            padding-left: 0;
-        }
-        %ore-p--post__#{$name}--0 {
-            padding-right: 0;
-        }
-    }
-}
 
 
 /* Side paddings for layout
