@@ -45,7 +45,7 @@
 %ore-n--toggle__item {}
 
 %ore-n--toggle__checked {
-    max-height: 30em;
+    max-height: none;
 }
 
 
@@ -62,25 +62,32 @@
         @include span($i of $s-columns);
     }
     %ore-g--#{$i}--last {
-        @include span($i of $s-columns)
+        @include span(last $i of $s-columns)
     }
     %ore-g--#{$i}--nest {
         @include span($i of $s-columns nest)
     }
+    %ore-g--#{$i}--last--nest {
+        @include span(last $i of $s-columns nest)
+    }
 }
 
 // RWD grid %placeholders for pecific breakpoints.
-@each $name, $width in $breakpoints {
+// $value(1) is breakpoint value, #2 is correspondent padding
+@each $name, $value in $breakpoints {
     @for $i from 1 through $s-columns {
-        @include breakpoint( $width ) {
+        @include breakpoint( nth($value, 1) ) {
             %ore-g__#{$name}--#{$i} {
                 @include span($i of $s-columns);
             }
             %ore-g__#{$name}--#{$i}--last {
-                @include span($i of $s-columns)
+                @include span(last $i of $s-columns)
             }
             %ore-g__#{$name}--#{$i}--nest {
                 @include span($i of $s-columns nest)
+            }
+            %ore-g__#{$name}--#{$i}--last--nest {
+                @include span(last $i of $s-columns nest)
             }
         }
     }
@@ -91,13 +98,8 @@
 //      #Margins and paddings
 // -------------------------------------
 
-%ore-m--leader {
-    @include leader(1);
-} 
-%ore-m--trailer {
-    @include trailer(1);
-}
-
+/* Misc common margins and paddings
+---------------------------------------- */
 %ore-m--0 {
     margin: 0;
 }
@@ -109,6 +111,74 @@
 %ore-m__topbot--0 {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+
+/* Vertical rhytm margins and paddings
+---------------------------------------- */
+
+%ore-m--leader {
+    @include leader(1);
+} 
+%ore-m--trailer {
+    @include trailer(1);
+}
+%ore-p--leader {
+    @include padding-leader(1);
+} 
+%ore-p--trailer {
+    @include padding-trailer(1);
+}
+
+
+/* Susy column padding and margins
+---------------------------------------- */
+@for $i from 1 through $s-columns {
+    %ore-m--pre--#{$i} {
+        @include pre($i of $s-columns);
+    }
+    %ore-m--post--#{$i} {
+        @include post($i of $s-columns)
+    }
+    %ore-p--pre--#{$i} {
+        @include prefix($i of $s-columns)
+    }
+    %ore-p--post--#{$i} {
+        @include suffix($i of $s-columns)
+    }
+}
+
+
+@each $name, $value in $breakpoints {
+    @include breakpoint( nth($value, 1) ) {
+        @for $i from 1 through $s-columns {
+            %ore-m--pre__#{$name}--#{$i} {
+                @include pre($i of $s-columns);
+            }
+            %ore-m--post__#{$name}--#{$i} {
+                @include post($i of $s-columns)
+            }
+            %ore-p--pre__#{$name}--#{$i} {
+                @include prefix($i of $s-columns)
+            }
+            %ore-p--post__#{$name}--#{$i} {
+                @include suffix($i of $s-columns)
+            }
+        }
+        // Reset %placeholders
+        %ore-m--pre__#{$name}--0 {
+            margin-left: 0;
+        }
+        %ore-m--post__#{$name}--0 {
+            margin-right: 0;
+        }
+        %ore-p--pre__#{$name}--0 {
+            padding-left: 0;
+        }
+        %ore-p--post__#{$name}--0 {
+            padding-right: 0;
+        }
+    }
 }
 
 
@@ -125,13 +195,14 @@
     padding-right: 0;
 }
 
-@each $name, $width in $breakpoints {
-    @include breakpoint( $width ) {
+@each $name, $value in $breakpoints {
+    @include breakpoint( nth($value, 1) ) {
         %ore-p__#{$name}--sides {
-            padding-left: $l-padding-#{$name};
-            padding-right: $l-padding-#{$name};
+            padding-left: nth($value, 2);
+            padding-right: nth($value, 2);
         }
-        %ore-p__#($name)--sides--0 {
+
+        %ore-p__#{$name}--sides--0 {
             padding-left: 0;
             padding-right: 0;
         }
@@ -166,6 +237,7 @@
 // -------------------------------------
 //      #Misc utilities
 // -------------------------------------
+
 
 %ore-clear {
     clear: both;
@@ -212,6 +284,9 @@
 %ore-display-block {
     display: block;
 }
+%ore-display-inline-block {
+    display: inline-block;
+}
 
 
 %ore-hide {
@@ -247,5 +322,5 @@
 %ore-list--0 {
     list-style-type: none;
     padding-left: 0;
-    line-height: 0;
+    //line-height: 0;
 }

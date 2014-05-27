@@ -6,7 +6,6 @@
 	<!--[if IE]><![endif]-->
 
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/style.css" />
-	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
